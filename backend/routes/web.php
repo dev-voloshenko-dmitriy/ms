@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/front-test-api/', function () {
+Route::middleware("auth:sanctum")->get('/front-test-api/', function () {
     return response(['status' => 'ok', 200])->header('Access-Control-Allow-Origin', '*');
+});
+
+Route::get('/login/', function () {
+    return 'ok';
+})->name('login');
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
 });
