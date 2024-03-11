@@ -3,15 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginPostRequest;
-use Illuminate\Http\Request;
+use App\Services\AuthServices\LoginServices;
 
 class AuthController extends Controller
 {
     public function login(LoginPostRequest $request)
     {
-        $validated = $request->validated();
-
-        return $validated;
+        return (new LoginServices($request->validated()))->make();
     }
 
     public function signUp()
