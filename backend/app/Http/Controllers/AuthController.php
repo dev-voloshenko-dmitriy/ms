@@ -3,20 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginPostRequest;
-use App\Services\AuthServices\LoginServices;
+use App\Http\Requests\SignUpPostRequest;
+use App\Services\AuthService;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function login(LoginPostRequest $request)
+    protected $authService;
+
+    public function __construct(AuthService $postService)
     {
-        return (new LoginServices($request->validated()))->make();
+        $this->authService = $postService;
     }
 
-    public function signUp()
+    public function login(LoginPostRequest $request)
     {
-        return [
-            "status" => 'ok',
-            "action" => 'signUp',
-        ];
+        return $this->authService->login($request);
+    }
+
+    public function signUp(SignUpPostRequest $request)
+    {
+        return $this->authService->signUp($request);
+    }
+
+    public function logout(Request $request)
+    {
+        return $this->authService->logout($request);
     }
 }
