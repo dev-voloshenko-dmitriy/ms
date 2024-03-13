@@ -14,8 +14,8 @@ export abstract class BaseApiProvider implements ApiProvider {
     {
         if(this.apiInstance === null) {
             this.apiInstance = axios.create({
-                baseURL: 'backend/api/',
-                timeout: 1000,
+                baseURL: 'http://localhost:8181/api/',
+                timeout: 9000,
                 headers: {'Content-Type': 'application/json'}
             });
         }

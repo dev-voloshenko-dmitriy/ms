@@ -1,21 +1,23 @@
 <script setup lang="ts">
 import BaseLayout from "@/views/layout/base-layout.vue";
-
+import { LockOutlined, MailOutlined } from '@ant-design/icons-vue';
+import { LoginProvider } from '@/providers/auth/LoginProvider';
 
 import {reactive} from 'vue';
 
 interface FormState {
-  username: string;
+  email: string;
   password: string;
-  remember: boolean;
 }
 
 const formState = reactive<FormState>({
-  username: '',
-  password: '',
-  remember: true,
+  email: '',
+  password: ''
 });
-const onFinish = (values: any) => {
+
+const onFinish = async (values: any) => {
+  let provider = new LoginProvider();
+  provider.login(values.email, values.password)
   console.log('Success:', values);
 };
 
@@ -27,22 +29,12 @@ const layout = {
   wrapperCol: {flex: "auto"},
 };
 
-const validateMessages = {
-  required: '${label} is required!',
-  types: {
-    email: '${label} is not a valid email!',
-    number: '${label} is not a valid number!',
-  },
-  number: {
-    range: '${label} must be between ${min} and ${max}',
-  },
-};
 </script>
 
 <template>
   <base-layout>
     <a-row justify="center">
-      <a-col :span="6">
+      <a-col :gutter="[8,8]" :xxl="{span: 7}" :xl="{span: 8}" :lg="{span: 10}" :md="{span: 18}">
         <a-row style="margin-bottom: 20px;" justify="center">
           <a-col>
             <h3>Login</h3>
@@ -55,28 +47,32 @@ const validateMessages = {
                 name="basic"
                 v-bind="layout"
                 autocomplete="off"
-                :validate-messages="validateMessages"
                 @finish="onFinish"
                 @finishFailed="onFinishFailed"
             >
               <a-form-item
-                  label="Username"
-                  name="username"
-                  :rules="[{ required: true, message: 'Please input your username!' }]"
+                  label="Email"
+                  name="email"
+                  :rules="[{ type: 'email' }]"
               >
-                <a-input v-model:value="formState.username"/>
+                <a-input v-model:value="formState.email" type="email">
+                  <template #prefix><MailOutlined style="color: rgba(0, 0, 0, 0.25)" /></template>
+                </a-input>
               </a-form-item>
 
               <a-form-item
                   label="Password"
                   name="password"
-                  :rules="[{ required: true, message: 'Please input your password!' }]"
               >
-                <a-input-password v-model:value="formState.password"/>
+                <a-input v-model:value="formState.password" type="password" placeholder="Password">
+                  <template #prefix><LockOutlined style="color: rgba(0, 0, 0, 0.25)" /></template>
+                </a-input>
               </a-form-item>
 
               <a-form-item name="remember" :wrapper-col="{ span: 24 }">
-                <a-button type="primary" html-type="submit">Submit</a-button>
+                <a-button
+                :disabled="formState.email === '' || formState.password === ''"
+                type="primary" html-type="submit">Submit</a-button>
               </a-form-item>
             </a-form>
           </a-col>

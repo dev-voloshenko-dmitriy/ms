@@ -6,6 +6,7 @@
       location / {
           root   /frontend/;
           index  index.html index.htm;
+          try_files $uri $uri/ /index.html?$query_string;
       }
     }
 

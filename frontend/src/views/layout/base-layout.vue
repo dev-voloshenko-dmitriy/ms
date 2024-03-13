@@ -19,7 +19,7 @@ const selectedKeys = ref(['2']);
         <a-menu-item key="3">nav 3</a-menu-item>
       </a-menu>
     </a-layout-header>
-    <a-layout-content style="padding: 0 50px">
+    <a-layout-content style="padding: 20px 50px">
       <div :style="{ background: '#fff', padding: '24px', minHeight: '280px', height: '87vh' }">
         <slot></slot>
       </div>
