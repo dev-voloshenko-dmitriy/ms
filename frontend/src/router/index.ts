@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import {store} from "@/stores/stores";
+import Login from "@/views/Login.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,15 +18,20 @@ const router = createRouter({
         requiresAuth: true
       },
       component: () => import('../views/AboutView.vue')
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
     }
   ]
 })
 
 router.beforeResolve(async to => {
   const storeApp = store();
-  console.log(storeApp.getApiInstance);
-  if(to.meta.requiresAuth && !storeApp.isAuthorized) {
 
+  if(to.meta.requiresAuth && !storeApp.isAuthorized) {
+    await router.push('login');
   }
 });
 

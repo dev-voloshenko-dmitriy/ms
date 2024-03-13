@@ -50,7 +50,6 @@ RUN docker-php-ext-install pdo_pgsql
 
 WORKDIR /backend/
 
-php artisan migrate:fresh --seed
 #RUN chmod -R 775 storage/
 
 ######### [PHP Modules] Default ########

@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import TheWelcome from '../components/TheWelcome.vue'
+import BaseLayout from "@/views/layout/base-layout.vue";
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <base-layout>
+    <RouterLink to="login">Login</RouterLink>
+  </base-layout>
 </template>
