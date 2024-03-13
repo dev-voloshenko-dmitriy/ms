@@ -14,7 +14,6 @@ class LoginPostRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'Имя обязателено к заполнению',
             'name.string' => 'Имя должено быть типа string',
             'name.max' => 'Максимальная длина имени не должна превышать 55-ти символов',
             'email.required' => 'Email обязателен к заполнению',
@@ -41,7 +40,7 @@ class LoginPostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "required|string|max:55",
+            "name" => "string|max:55",
             "email" => "required|string",
             "phone" => "string|min:10",
             "password" => ["required", "string", new Login],

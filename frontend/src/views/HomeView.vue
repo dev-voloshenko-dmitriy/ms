@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import TheWelcome from '../components/TheWelcome.vue'
-import TestAPI from "@/components/TestAPI.vue";
+import BaseLayout from "@/views/layout/base-layout.vue";
 </script>
 
 <template>
-  <main>
-    <TestAPI />
-    <TheWelcome />
-  </main>
+  <base-layout>
+    <RouterLink to="login">Login</RouterLink>
+  </base-layout>
 </template>
