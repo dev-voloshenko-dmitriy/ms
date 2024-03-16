@@ -20,7 +20,7 @@ const selectedKeys = ref(['2']);
       </a-menu>
     </a-layout-header>
     <a-layout-content style="padding: 20px 50px">
-      <div :style="{ background: '#fff', padding: '24px', minHeight: '280px', height: '87vh' }">
+      <div :style="{ background: '#fff', padding: '24px', minHeight: '280px', height: '82vh' }">
         <slot></slot>
       </div>
     </a-layout-content>
