@@ -1,5 +1,4 @@
 import {defineStore} from 'pinia'
-import axios, {type AxiosInstance} from "axios";
 
 interface User {
     name: string|null,
@@ -11,7 +10,6 @@ interface Store {
     authorized: boolean,
     token: string,
     user: User,
-    apiInstance: AxiosInstance|null
 }
 
 export const store = defineStore("store", {
@@ -19,7 +17,6 @@ export const store = defineStore("store", {
         return {
             authorized: false,
             token: '',
-            apiInstance: null,
             user: {
                 name: '',
                 email: '',
@@ -32,8 +29,7 @@ export const store = defineStore("store", {
         {
             return this.authorized;
         }
-    },
-    actions: {}
+    }
 });
 
 

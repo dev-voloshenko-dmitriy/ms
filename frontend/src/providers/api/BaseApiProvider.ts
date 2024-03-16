@@ -4,23 +4,18 @@ import axios from "axios";
 
 export abstract class BaseApiProvider implements ApiProvider {
 
-    apiInstance: AxiosInstance|null = null
+    apiInstance: AxiosInstance;
 
     constructor() {
-        this.getApiInstance();
+        this.apiInstance =  this.getApiInstance();
     }
 
     getApiInstance(): AxiosInstance
     {
-        if(this.apiInstance === null) {
-            this.apiInstance = axios.create({
+        return axios.create({
                 baseURL: 'http://localhost:8181/api/',
-                timeout: 9000,
+                timeout: 14000,
                 headers: {'Content-Type': 'application/json'}
             });
-        }
-
-
-        return this.apiInstance;
     }
 }
