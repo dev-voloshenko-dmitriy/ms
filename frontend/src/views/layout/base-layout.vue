@@ -19,8 +19,8 @@ const selectedKeys = ref(['2']);
         <a-menu-item key="3">nav 3</a-menu-item>
       </a-menu>
     </a-layout-header>
-    <a-layout-content style="padding: 20px 50px">
-      <div :style="{ background: '#fff', padding: '24px', minHeight: '280px', height: '82vh' }">
+    <a-layout-content>
+      <div class=" backdrop-opacity-80 rounded-t shadow-xl" :style="{ padding: '24px', minHeight: '280px', height: '82vh' }">
         <slot></slot>
       </div>
     </a-layout-content>

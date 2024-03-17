@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import BaseLayout from "@/views/layout/base-layout.vue";
-import { LockOutlined, MailOutlined } from '@ant-design/icons-vue';
+import { LockOutlined, MailOutlined, UserOutlined, PhoneOutlined } from '@ant-design/icons-vue';
 import { LoginProvider } from '@/providers/auth/LoginProvider';
 import { message } from 'ant-design-vue';
 import { reactive } from 'vue';
@@ -9,6 +9,8 @@ import { storeApp } from "@/stores/stores";
 import router from "@/router";
 
 interface FormState {
+    name: string;
+    phone: string;
 	email: string;
 	password: string;
 }
@@ -22,6 +24,8 @@ const openMessage = () => {
 };
 
 const formState = reactive<FormState>({
+    name: '',
+    phone: '',
 	email: '',
 	password: ''
 });
@@ -56,6 +60,7 @@ const layout = {
 	wrapperCol: { flex: "auto" },
 };
 
+
 </script>
 
 <template>
@@ -69,7 +74,27 @@ const layout = {
 						<h3 style="text-align: center">Войти</h3>
 					</template>
 					<a-form :model="formState" name="basic" v-bind="layout" autocomplete="off" @finish="onFinish">
-						<a-form-item label="Email" name="email" :rules="[{ type: 'email' }]">
+						<a-form-item label="Имя" name="name" :rules="[{ type: 'name' }]">
+							<a-input v-model:value="formState.name" >
+								<template #prefix>
+                                    <UserOutlined style="color: rgba(0, 0, 0, 0.25)" />
+								</template>
+							</a-input>
+						</a-form-item>
+
+                        <a-form-item label="Телефон" name="phone">
+                            <a-input-number
+                                class="w-full"
+                                v-model:value="formState.phone"
+                                :formatter="(value: any) => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')"
+                                :parser="(value: string) => value.replace(/\$\s?|(,*)/g, '')">
+								<template #prefix>
+                                    <PhoneOutlined style="color: rgba(0, 0, 0, 0.25)"/>
+								</template>
+							</a-input-number>
+                        </a-form-item>
+                        
+                        <a-form-item label="Email" name="email" :rules="[{ type: 'email' }]">
 							<a-input v-model:value="formState.email" type="email">
 								<template #prefix>
 									<MailOutlined style="color: rgba(0, 0, 0, 0.25)" />

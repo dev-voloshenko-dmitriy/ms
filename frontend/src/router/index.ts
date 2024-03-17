@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import {store} from "@/stores/stores";
+import { storeApp } from "@/stores/stores";
 import Login from "@/views/Login.vue";
+import SingUpView from '@/views/SingUpView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,14 +24,19 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: Login
-    }
+    },
+    {
+      path: '/sing-up',
+      name: 'singUp',
+      component: SingUpView
+    },
   ]
 })
 
 router.beforeResolve(async to => {
-  const storeApp = store();
+  const store = storeApp();
 
-  if(to.meta.requiresAuth && !storeApp.isAuthorized) {
+  if(to.meta.requiresAuth && !store.isAuthorized) {
     await router.push('login');
   }
 });
