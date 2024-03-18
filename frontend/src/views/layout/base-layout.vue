@@ -1,7 +1,26 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-const selectedKeys = ref(['2']);
+import router from "@/router";
+const selectedKeys = ref([2]);
 
+const activeRoute =  router.currentRoute.value.path;
+
+const menu = [
+  {
+    name: 'Главная',
+    url:  '/'
+  },
+  {
+    name: 'О нас',
+    url: '/about'
+  }
+]
+
+for (let i = 0; i < menu.length; i++) {
+  if(menu[i].url === activeRoute) {
+    selectedKeys.value = [i];
+  }
+}
 </script>
 
 <template>
@@ -12,15 +31,18 @@ const selectedKeys = ref(['2']);
           v-model:selectedKeys="selectedKeys"
           theme="dark"
           mode="horizontal"
-          :style="{ lineHeight: '64px' }"
-      >
-        <a-menu-item key="1">nav 1</a-menu-item>
-        <a-menu-item key="2">nav 2</a-menu-item>
-        <a-menu-item key="3">nav 3</a-menu-item>
+          :style="{ lineHeight: '64px' }">
+
+        <a-menu-item v-for="(menuItem , key) in menu" :key="key">
+          <RouterLink :to="menuItem.url">
+            {{menuItem.name}}
+          </RouterLink>
+        </a-menu-item>
       </a-menu>
     </a-layout-header>
     <a-layout-content>
-      <div class=" backdrop-opacity-80 rounded-t shadow-xl" :style="{ padding: '24px', minHeight: '280px', height: '82vh' }">
+
+      <div class=" backdrop-opacity-80 rounded-t shadow-xl" :style="{ padding: '24px', minHeight: '280px', height: '87vh' }">
         <slot></slot>
       </div>
     </a-layout-content>

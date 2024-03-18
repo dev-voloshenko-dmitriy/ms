@@ -1,16 +1,14 @@
 import type { ResponseProvider } from "../api/ResponseProvider";
-
-interface LoginData {
-    tokin:string,
-    messages: Array<string>|null
-}
+import type { AushData } from "@/providers/auth/AuthData";
 
 
-export class LoginResponseProvider implements ResponseProvider
+
+
+export class AuthResponseProvider implements ResponseProvider
 {
     constructor(
         public status:number|undefined,
         public code:string|undefined,
-        public data:LoginData
+        public data: AushData
     ){}
 }

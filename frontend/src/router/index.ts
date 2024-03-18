@@ -35,7 +35,7 @@ const router = createRouter({
 
 router.beforeResolve(async to => {
   const store = storeApp();
-
+  console.log(store.isAuthorized);
   if(to.meta.requiresAuth && !store.isAuthorized) {
     await router.push('login');
   }

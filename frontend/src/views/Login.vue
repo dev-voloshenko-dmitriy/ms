@@ -4,35 +4,28 @@ import { LockOutlined, MailOutlined } from '@ant-design/icons-vue';
 import { LoginProvider } from '@/providers/auth/LoginProvider';
 import { message } from 'ant-design-vue';
 import { reactive } from 'vue';
-import type { LoginResponseProvider } from "@/providers/auth/LoginResponseProvider";
+import type { AuthResponseProvider } from "@/providers/auth/AuthResponseProvider";
 import { storeApp } from "@/stores/stores";
 import router from "@/router";
-
-interface FormState {
-	email: string;
-	password: string;
-}
-
-interface FormError {
-	messages: Array<string> | null
-}
+import type {FormLoginState} from "@/formInterface/formLogin/FormLoginState";
+import type {FormLoginError} from "@/formInterface/formLogin/FormLoginError";
 
 const openMessage = () => {
 	message.loading('Выполняем вход', 0);
 };
 
-const formState = reactive<FormState>({
+const formState = reactive<FormLoginState>({
 	email: '',
 	password: ''
 });
 
-let ErrorForm = reactive<FormError>({
+let ErrorForm = reactive<FormLoginError>({
 	messages: [],
 });
 
 const onFinish = async (values: any) => {
 	let provider: LoginProvider = new LoginProvider();
-	let response: LoginResponseProvider = await provider.login(values.email, values.password);
+	let response: AuthResponseProvider = await provider.login(values.email, values.password);
 	
 	message.destroy();
 

@@ -45,7 +45,7 @@ class SignUpPostRequest extends FormRequest
         return [
             "name" => "required|string|max:55",
             "email" => "required|string|email|unique:App\Models\User,email",
-            "phone" => "string|min:10|unique:App\Models\User,phone",
+            "phone" => "numeric|min:10|unique:App\Models\User,phone",
             "password" => "required|string",
         ];
     }

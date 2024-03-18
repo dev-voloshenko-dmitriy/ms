@@ -1,15 +1,14 @@
 import { BaseApiProvider } from "@/providers/api/BaseApiProvider";
 import { AuthResponseProvider } from "./AuthResponseProvider";
 import type { AxiosError, AxiosResponse } from "axios";
-import type {FormLoginState} from "@/formInterface/formLogin/FormLoginState";
+import type {FormSingUPState} from "@/formInterface/formSingUp/FormSingUPState";
 
 
-export class LoginProvider extends BaseApiProvider {
-
-    public async login(formData: FormLoginState): Promise<AuthResponseProvider> {
+export class SingUpProvider extends BaseApiProvider {
+    public async singUp(formDate:FormSingUPState): Promise<AuthResponseProvider> {
         let response: AuthResponseProvider;
 
-        response = await this.apiInstance.post('/login', { email: formData.email, password: formData.password })
+        response = await this.apiInstance.post('/signup', formDate)
             .then(function (AxiosResponse:AxiosResponse) {
                 return new AuthResponseProvider(AxiosResponse?.status, AxiosResponse.statusText, {tokin: AxiosResponse.data.tokin, messages: []});
             })
@@ -24,16 +23,15 @@ export class LoginProvider extends BaseApiProvider {
                         messages.push(itemValue);
                     }
                 }
-                
+
 
                 return new AuthResponseProvider(error.response?.status, error.response?.statusText , {tokin: '', messages: messages});
             });
-        
+
         if(response !== undefined) {
             return response;
         }
 
         return new AuthResponseProvider(undefined, undefined, {tokin: '', messages: ['Произошла не предвиденная ошибка']});
     }
-
 }
