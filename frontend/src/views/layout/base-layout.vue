@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import router from "@/router";
-const selectedKeys = ref([2]);
+import {useStore} from "vuex";
+import {storeApp} from "@/stores/stores";
 
+const selectedKeys = ref([2]);
 const activeRoute =  router.currentRoute.value.path;
 
 const menu = [
@@ -21,24 +23,39 @@ for (let i = 0; i < menu.length; i++) {
     selectedKeys.value = [i];
   }
 }
+
+const store = storeApp();
 </script>
 
 <template>
   <a-layout class="layout">
     <a-layout-header>
-      <div class="logo" />
-      <a-menu
-          v-model:selectedKeys="selectedKeys"
-          theme="dark"
-          mode="horizontal"
-          :style="{ lineHeight: '64px' }">
+      <a-row justify="space-between">
+        <a-col>
+          <div class="logo" />
+        </a-col>
+        <a-col >
+          <a-menu
+              v-model:selectedKeys="selectedKeys"
+              theme="dark"
+              mode="horizontal"
+              :style="{ lineHeight: '64px' }">
 
-        <a-menu-item v-for="(menuItem , key) in menu" :key="key">
-          <RouterLink :to="menuItem.url">
-            {{menuItem.name}}
-          </RouterLink>
-        </a-menu-item>
-      </a-menu>
+            <a-menu-item v-for="(menuItem , key) in menu" :key="key">
+              <RouterLink class="text-base" :to="menuItem.url">
+                {{menuItem.name}}
+              </RouterLink>
+            </a-menu-item>
+          </a-menu>
+        </a-col>
+        <a-col v-if="!store.isAuthorized">
+            <RouterLink class="m-1 text-base" to="login">Login</RouterLink>
+            <RouterLink  class="m-1 text-base" to="sing-up">SingUP</RouterLink>
+        </a-col>
+        <a-col v-else>
+          <RouterLink class="m-1 text-base" to="account">Ваш аккаунт</RouterLink>
+        </a-col>
+      </a-row>
     </a-layout-header>
     <a-layout-content>
 
