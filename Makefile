@@ -3,7 +3,8 @@ THIS_FILE := $(lastword $(MAKEFILE_LIST))
 
 build-dev:
 	docker compose up -d --build
-	sleep 1
 	docker compose exec -i backend sh -c "php artisan migrate:fresh --seed"
 exit:
 	docker compose down
+db-fresh:
+	docker compose exec -i backend sh -c "php artisan migrate:fresh --seed"

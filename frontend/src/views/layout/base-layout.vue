@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import router from "@/router";
-import {useStore} from "vuex";
 import {storeApp} from "@/stores/stores";
 
 const selectedKeys = ref([2]);
