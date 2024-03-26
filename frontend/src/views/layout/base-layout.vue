@@ -28,7 +28,7 @@ const store = storeApp();
 
 <template>
   <a-layout class="layout">
-    <a-layout-header>
+    <a-layout-header :style="{ lineHeight: '58px' }"  style="border-radius:10px; height:58px;">
       <a-row justify="space-between">
         <a-col>
           <div class="logo" />
@@ -38,21 +38,21 @@ const store = storeApp();
               v-model:selectedKeys="selectedKeys"
               theme="dark"
               mode="horizontal"
-              :style="{ lineHeight: '64px' }">
+              :style="{ lineHeight: '58px' }">
 
             <a-menu-item v-for="(menuItem , key) in menu" :key="key">
-              <RouterLink class="text-base" :to="menuItem.url">
+              <RouterLink class="font-thin" :to="menuItem.url">
                 {{menuItem.name}}
               </RouterLink>
             </a-menu-item>
           </a-menu>
         </a-col>
         <a-col v-if="!store.isAuthorized">
-            <RouterLink class="m-1 text-base" to="login">Login</RouterLink>
-            <RouterLink  class="m-1 text-base" to="sing-up">SingUP</RouterLink>
+            <RouterLink class="m-1 font-thin" to="login">Login</RouterLink>
+            <RouterLink  class="m-1 font-thin" to="sing-up">SingUP</RouterLink>
         </a-col>
         <a-col v-else>
-          <RouterLink class="m-1 text-base" to="account">Ваш аккаунт</RouterLink>
+          <RouterLink class="m-1 font-thin " to="account">Ваш аккаунт</RouterLink>
         </a-col>
       </a-row>
     </a-layout-header>
