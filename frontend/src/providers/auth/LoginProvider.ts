@@ -25,7 +25,6 @@ export class LoginProvider extends BaseApiProvider {
                     }
                 }
                 
-
                 return new AuthResponseProvider(error.response?.status, error.response?.statusText , {tokin: '', messages: messages});
             });
         

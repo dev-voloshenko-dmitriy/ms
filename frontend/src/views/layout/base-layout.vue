@@ -1,86 +1,14 @@
 <script setup lang="ts">
-import {ref} from 'vue';
-import router from "@/router";
-import {storeApp} from "@/stores/stores";
+import { ref } from 'vue';
+import Header from '@/components/layout/base/Header.vue';
 
-const selectedKeys = ref([2]);
-const activeRoute = router.currentRoute.value.path;
-
-const menu = [
-  {
-    name: 'Главная',
-    url: '/'
-  },
-  {
-    name: 'О нас',
-    url: '/about'
-  }
-]
-
-for (let i = 0; i < menu.length; i++) {
-  if (menu[i].url === activeRoute) {
-    selectedKeys.value = [i];
-  }
-}
-
-const store = storeApp();
-
-
-const open = ref(false);
-
-const showDrawer = () => {
-  console.log(1);
-  open.value = true;
-};
-
-const onClose = () => {
-  open.value = false;
-};
+const selectedKeys = ref(0);
 
 </script>
 
 <template>
   <div class="bg-white">
-    <header class="absolute inset-x-0 top-0 z-50">
-      <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
-        <div class="flex lg:flex-1">
-          <a href="#" class="-m-1.5 p-1.5">
-            <span class="sr-only">Your Company</span>
-            <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="">
-          </a>
-        </div>
-        <div class="flex lg:hidden" @click="showDrawer">
-          <button type="button"  class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
-            <span class="sr-only">Open main menu</span>
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                 aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
-            </svg>
-          </button>
-        </div>
-        <div class="hidden lg:flex lg:gap-x-12">
-          <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Product</a>
-          <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Features</a>
-          <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Marketplace</a>
-          <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Company</a>
-        </div>
-        <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Log in <span
-              aria-hidden="true">&rarr;</span></a>
-        </div>
-      </nav>
-    </header>
-    <a-drawer
-        title="Basic Drawer"
-        placement="right"
-        :closable="false"
-        :open="open"
-        :get-container="false"
-        :style="{ position: 'absolute' }"
-        @close="onClose"
-    >
-      <p>Some contents...</p>
-    </a-drawer>
+    <Header />
     <div class="relative isolate px-6 pt-14 lg:px-8">
       <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
            aria-hidden="true">
@@ -88,7 +16,7 @@ const onClose = () => {
             class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
             style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
       </div>
-      <div class="py-32 sm:py-48 lg:py-56">
+      <div class="py-8 px-10 sm:px-10 lg:px-5">
         <slot></slot>
       </div>
       <div

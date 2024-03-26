@@ -25,7 +25,7 @@ let ErrorForm = reactive<FormLoginError>({
 
 const onFinish = async (values: any) => {
 	let provider: LoginProvider = new LoginProvider();
-	let response: AuthResponseProvider = await provider.login(values.email, values.password);
+	let response: AuthResponseProvider = await provider.login(formState);
 	
 	message.destroy();
 
