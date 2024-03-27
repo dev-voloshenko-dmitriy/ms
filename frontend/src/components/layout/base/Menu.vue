@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import router from "@/router";
 
 const activeRoute = router.currentRoute.value.path;

@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import Header from '@/components/layout/base/Header.vue';
-
-const selectedKeys = ref(0);
-
 </script>
 
 <template>

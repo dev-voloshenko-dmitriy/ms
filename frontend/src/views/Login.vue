@@ -35,7 +35,7 @@ const onFinish = async (values: any) => {
 
 		const store = storeApp();
 		store.saveAuthorizationData(response.data.tokin);
-		router.push('/');
+		router.push('/admin');
 
 	} else {
 		ErrorForm.messages = response.data.messages;
@@ -79,7 +79,8 @@ const layout = {
 						</a-form-item>
 
 						<a-form-item name="remember" :wrapper-col="{ align: 'center', span: 14 }">
-							<a-button 
+							<a-button
+                                class="bg-blue-600"
 								@click="openMessage" 
 								:disabled="formState.email === '' || formState.password === ''" 
 								type="primary"

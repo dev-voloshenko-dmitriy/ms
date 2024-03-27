@@ -1,17 +1,13 @@
+<script setup lang="ts">
+import BaseLayout from "@/views/layout/base-layout.vue";
+</script>
+
 <template>
-  <base-layout>
-    <div class="about">
-      <h1>This is an about page</h1>
+  <BaseLayout>
+    <div class="about pt-36">
+      <h1 class="text-center">This is an about page</h1>
     </div>
-  </base-layout>
+  </BaseLayout>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-</style>
+

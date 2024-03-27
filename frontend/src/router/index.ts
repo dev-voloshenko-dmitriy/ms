@@ -3,6 +3,10 @@ import HomeView from '../views/HomeView.vue'
 import { storeApp } from "@/stores/stores";
 import Login from "@/views/Login.vue";
 import SingUpView from '@/views/SingUpView.vue';
+import AboutView from "@/views/AboutView.vue";
+import AdminView from "@/views/admin/AdminView.vue";
+import CreateArticlesView from "@/views/admin/Blog/CreateArticlesView.vue";
+import ArticlesView from "@/views/admin/Blog/ArticlesView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,7 +22,7 @@ const router = createRouter({
       meta: {
         requiresAuth: true
       },
-      component: () => import('../views/AboutView.vue')
+      component: AboutView
     },
     {
       path: '/login',
@@ -30,6 +34,30 @@ const router = createRouter({
       name: 'singUp',
       component: SingUpView
     },
+    {
+      path: '/admin',
+      name: 'admin',
+      meta: {
+        requiresAuth: true
+      },
+      component: AdminView
+    },
+    {
+      path: '/admin/articles/create',
+      name: 'articlesCreate',
+      meta: {
+        requiresAuth: true
+      },
+      component: CreateArticlesView
+    },
+    {
+      path: '/admin/articles',
+      name: 'articles',
+      meta: {
+        requiresAuth: true
+      },
+      component: ArticlesView
+    }
   ]
 })
 

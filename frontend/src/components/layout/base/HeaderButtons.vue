@@ -1,5 +1,6 @@
+
 <template>
-    <div class="flex lg:hidden" @click="showDrawer">
+    <div class="flex lg:hidden">
         <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
             <span class="sr-only">Open main menu</span>
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -9,12 +10,19 @@
         </button>
     </div>
     <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900 mr-2">
-            Sing up
-        </a>
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">
-            Log in
-            <span aria-hidden="true">&rarr;</span>
-        </a>
+      <router-link
+          class="text-sm font-semibold leading-6 text-gray-900 mr-2"
+          to="/sing-up">
+        Sing up
+      </router-link>
+
+      <router-link
+          class="text-sm font-semibold leading-6 text-gray-900"
+          to="/login">
+        Log in
+        <span aria-hidden="true">&rarr;</span>
+      </router-link>
     </div>
 </template>
+<script setup lang="ts">
+</script>
