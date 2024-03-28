@@ -18,7 +18,7 @@ class AuthService
 
         return [
             "status" => "success",
-            'tokin' => $this->createToken($user),
+            'token' => $this->createToken($user),
         ];
     }
 
@@ -29,7 +29,7 @@ class AuthService
         
         return [
             "status" => "success",
-            'tokin' => $this->createToken($user)
+            'token' => $this->createToken($user)
         ];
     }
 

@@ -1,4 +1,4 @@
 export interface AushData  {
-    tokin:string,
+    token:string,
     messages: Array<string>|null
 }

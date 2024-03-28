@@ -11,7 +11,7 @@ export class LoginProvider extends BaseApiProvider {
 
         response = await this.apiInstance.post('/login', { email: formData.email, password: formData.password })
             .then(function (AxiosResponse:AxiosResponse) {
-                return new AuthResponseProvider(AxiosResponse?.status, AxiosResponse.statusText, {tokin: AxiosResponse.data.tokin, messages: []});
+                return new AuthResponseProvider(AxiosResponse?.status, AxiosResponse.statusText, {token: AxiosResponse.data.tokin, messages: []});
             })
             .catch(function (error:AxiosError) {
                 let messagesAxiosError: any = error.response?.data;
@@ -25,14 +25,14 @@ export class LoginProvider extends BaseApiProvider {
                     }
                 }
                 
-                return new AuthResponseProvider(error.response?.status, error.response?.statusText , {tokin: '', messages: messages});
+                return new AuthResponseProvider(error.response?.status, error.response?.statusText , {token: '', messages: messages});
             });
         
         if(response !== undefined) {
             return response;
         }
 
-        return new AuthResponseProvider(undefined, undefined, {tokin: '', messages: ['Произошла не предвиденная ошибка']});
+        return new AuthResponseProvider(undefined, undefined, {token: '', messages: ['Произошла не предвиденная ошибка']});
     }
 
 }
